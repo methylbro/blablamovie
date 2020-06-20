@@ -15,6 +15,6 @@ class ReadMovieChoices
 
     public function __invoke(string $userUuid): Array
     {
-        return $this->repository->findByUserId($userUuid);
+        return $this->repository->findByUserUuid($userUuid);
     }
 }

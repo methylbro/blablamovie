@@ -13,7 +13,7 @@ class MovieChoiceRepository extends ServiceEntityRepository
         parent::__construct($registry, MovieChoice::class);
     }
 
-    public function findOne($userId, $imdbId)
+    public function findOne($UserUuid, $imdbId)
     {
         $query = $this->getEntityManager()->createQuery(
 <<<DQL
@@ -23,7 +23,7 @@ class MovieChoiceRepository extends ServiceEntityRepository
               AND f.imdbId = :imdbId
  DQL);
         $query
-            ->setParameter('user', $userId)
+            ->setParameter('user', $UserUuid)
             ->setParameter('imdbId', $imdbId)
         ;
  
@@ -42,7 +42,7 @@ class MovieChoiceRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findByUserId($userId)
+    public function findByUserUuid($UserUuid)
     {
         $query = $this->getEntityManager()->createQuery(
 <<<DQL
@@ -50,8 +50,28 @@ class MovieChoiceRepository extends ServiceEntityRepository
             FROM App\Entity\MovieChoice f
             WHERE f.user = :user
  DQL);
-        $query->setParameter('user', $userId);
+        $query->setParameter('user', $UserUuid);
  
         return $query->getResult();
+    }
+
+    public function countByUserUuid($UserUuid)
+    {
+        $query = $this->getEntityManager()->createQuery(
+<<<DQL
+            SELECT count(f.imdbId)
+            FROM App\Entity\MovieChoice f
+            WHERE f.user = :user
+            GROUP BY f.user
+ DQL);
+        $query->setParameter('user', $UserUuid);
+
+        try {
+            $result = (int) $query->getSingleResult()[1];
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            $result = 0;
+        }
+
+        return $result;
     }
 }

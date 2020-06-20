@@ -24,8 +24,8 @@ class SaveMovieChoiceController
             $moviechoice = call_user_func_array(
                 $this->saveMovieChoice,
                 [
-                    $request->get('user_uuid'),
-                    $request->getContent(),
+                    'abcd1-abcd1',//$request->get('user_uuid'),
+                    'film4',//$request->getContent(),
                 ]
             );
         } catch (\DomainException $e) {

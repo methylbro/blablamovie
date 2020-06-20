@@ -11,7 +11,7 @@ class ReadMovieChoicesTest extends TestCase
     public function testExecute()
     {
     	$repository = $this->createMock(MovieChoiceRepository::class);
-        $repository->method('findByUserId')->with('abcd1:abcd2')->willReturn(['foo', 'bar']);
+        $repository->method('findByUserUuid')->with('abcd1:abcd2')->willReturn(['foo', 'bar']);
 
         $readMovieChoices = new ReadMovieChoices($repository);
         $result = $readMovieChoices('abcd1:abcd2');
