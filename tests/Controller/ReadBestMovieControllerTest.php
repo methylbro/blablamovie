@@ -2,19 +2,19 @@
 
 namespace App\Tests\Domain;
 
-use App\Domain\ReadBestFilm;
-use App\Controller\ReadBestFilmController;
+use App\Domain\ReadBestMovie;
+use App\Controller\ReadBestMovieController;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ReadBestFilmControllerTest extends TestCase
+class ReadBestMovieControllerTest extends TestCase
 {
     public function testExecute()
     {
-    	$readBestFilm = $this->createMock(ReadBestFilm::class);
-        $readBestFilm->method('__invoke')->willReturn(['foo', 'bar']);
+    	$readBestMovie = $this->createMock(ReadBestMovie::class);
+        $readBestMovie->method('__invoke')->willReturn(['foo', 'bar']);
 
-        $controller = new ReadBestFilmController($readBestFilm);
+        $controller = new ReadBestMovieController($readBestMovie);
         $response = $controller();
 
         $this->assertInstanceOf(JsonResponse::class, $response);

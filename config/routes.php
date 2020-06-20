@@ -9,24 +9,24 @@ return function (RoutingConfigurator $routes) {
         ->controller(Controller\CreateUserController::class)
         ->methods(['POST', 'GET'])
     ;
-    $routes->add('delete_filmchoice', '/user/{user_uuid}/filmchoice/{imdbId}')
-        ->controller(Controller\DeleteFilmChoiceController::class)
+    $routes->add('delete_moviechoice', '/user/{user_uuid}/moviechoice/{imdbId}')
+        ->controller(Controller\DeleteMovieChoiceController::class)
         ->methods(['DEL', 'GET'])
     ;
     $routes->add('read_bestfilm', '/bestfilm')
-        ->controller(Controller\ReadBestFilmController::class)
+        ->controller(Controller\ReadBestMovieController::class)
         ->methods(['GET'])
     ;
-    $routes->add('read_filmchoices', '/user/{user_uuid}/filmchoices')
-        ->controller(Controller\ReadFilmChoicesController::class)
+    $routes->add('read_moviechoices', '/user/{user_uuid}/moviechoices')
+        ->controller(Controller\ReadMovieChoicesController::class)
         ->methods(['GET'])
     ;
-    $routes->add('read_userwithfilmchoice', '/users/withfilmchoice')
-        ->controller(Controller\ReadUsersWithFilmChoiceController::class)
+    $routes->add('read_userwithmoviechoice', '/users/withmoviechoice')
+        ->controller(Controller\ReadUsersWithMovieChoiceController::class)
         ->methods(['GET'])
     ;
-    $routes->add('save_filmchoice', '/user/{user_uuid}/filmchoice')
-        ->controller(Controller\SaveFilmChoiceController::class)
+    $routes->add('save_moviechoice', '/user/{user_uuid}/moviechoice')
+        ->controller(Controller\SaveMovieChoiceController::class)
         ->methods(['PUT', 'GET'])
     ;
 

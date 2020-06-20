@@ -2,15 +2,15 @@
 
 namespace App\Repository;
 
-use App\Entity\FilmChoice;
+use App\Entity\MovieChoice;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class FilmChoiceRepository extends ServiceEntityRepository
+class MovieChoiceRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FilmChoice::class);
+        parent::__construct($registry, MovieChoice::class);
     }
 
     public function findOne($userId, $imdbId)
@@ -18,7 +18,7 @@ class FilmChoiceRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()->createQuery(
 <<<DQL
             SELECT f
-            FROM App\Entity\FilmChoice f
+            FROM App\Entity\MovieChoice f
             WHERE f.user = :user
               AND f.imdbId = :imdbId
  DQL);
@@ -30,12 +30,12 @@ class FilmChoiceRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findBestFilms()
+    public function findBestMovies()
     {
         $query = $this->getEntityManager()->createQuery(
 <<<DQL
             SELECT f.imdbId, COUNT(f.imdbId) as total
-            FROM App\Entity\FilmChoice f
+            FROM App\Entity\MovieChoice f
             GROUP BY f.imdbId
             ORDER BY total DESC
  DQL);
@@ -47,7 +47,7 @@ class FilmChoiceRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()->createQuery(
 <<<DQL
             SELECT f.imdbId, f.createdAt
-            FROM App\Entity\FilmChoice f
+            FROM App\Entity\MovieChoice f
             WHERE f.user = :user
  DQL);
         $query->setParameter('user', $userId);

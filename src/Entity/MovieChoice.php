@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\FilmChoiceRepository")
- * @ORM\Table(name="filmchoice")
+ * @ORM\Entity(repositoryClass="App\Repository\MovieChoiceRepository")
+ * @ORM\Table(name="Moviechoice")
  */
-class FilmChoice
+class MovieChoice
 {
     use CreationDatetime;
 

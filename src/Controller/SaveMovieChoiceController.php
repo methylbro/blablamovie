@@ -4,25 +4,25 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use App\Domain\SaveFilmChoice;
+use App\Domain\SaveMovieChoice;
 
 /**
- * enregistrer le choix d'un film d'un utilisateur 
+ * enregistrer le choix d'un Movie d'un utilisateur 
  */
-class SaveFilmChoiceController
+class SaveMovieChoiceController
 {
-    private SaveFilmChoice $saveFilmChoice;
+    private SaveMovieChoice $saveMovieChoice;
 
-    public function __construct(SaveFilmChoice $saveFilmChoice)
+    public function __construct(SaveMovieChoice $saveMovieChoice)
     {
-        $this->saveFilmChoice = $saveFilmChoice;
+        $this->saveMovieChoice = $saveMovieChoice;
     }
 
     public function __invoke(Request $request): JsonResponse
     {
         try {
-            $filmchoice = call_user_func_array(
-                $this->saveFilmChoice,
+            $moviechoice = call_user_func_array(
+                $this->saveMovieChoice,
                 [
                     $request->get('user_uuid'),
                     $request->getContent(),
@@ -35,6 +35,6 @@ class SaveFilmChoiceController
             );
         }
 
-        return new JsonResponse($filmchoice);
+        return new JsonResponse($moviechoice);
     }
 }

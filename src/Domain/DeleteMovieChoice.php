@@ -5,10 +5,10 @@ namespace App\Domain;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Entity\User;
-use App\Entity\FilmChoice;
-use App\Form\FilmChoiceType;
+use App\Entity\MovieChoice;
+use App\Form\MovieChoiceType;
 
-class DeleteFilmChoice
+class DeleteMovieChoice
 {
     private EntityManagerInterface $entityManager;
 
@@ -17,21 +17,21 @@ class DeleteFilmChoice
         $this->entityManager = $entityManager;
     }
 
-    public function __invoke(string $userUuid, string $imdbId): FilmChoice
+    public function __invoke(string $userUuid, string $imdbId): MovieChoice
     {
-        $filmchoice = $this
+        $moviechoice = $this
             ->entityManager
-            ->getRepository(FilmChoice::class)
+            ->getRepository(MovieChoice::class)
             ->findOne($userUuid, $imdbId)
         ;
 
-        if (!$filmchoice) {
+        if (!$moviechoice) {
             throw new \DomainException("Nothing to be deleted");
         }
 
-        $this->entityManager->remove($filmchoice);
+        $this->entityManager->remove($moviechoice);
         $this->entityManager->flush();
 
-        return $filmchoice;
+        return $moviechoice;
     }
 }

@@ -4,25 +4,25 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use App\Domain\DeleteFilmChoice;
+use App\Domain\DeleteMovieChoice;
 
 /**
- * supprimer le choix d'un film d'un utilisateur
+ * supprimer le choix d'un Movie d'un utilisateur
  */
-class DeleteFilmChoiceController
+class DeleteMovieChoiceController
 {
-    private DeleteFilmChoice $deleteFilmChoice;
+    private DeleteMovieChoice $deleteMovieChoice;
 
-    public function __construct(DeleteFilmChoice $deleteFilmChoice) 
+    public function __construct(DeleteMovieChoice $deleteMovieChoice) 
     {
-        $this->deleteFilmChoice = $deleteFilmChoice;
+        $this->deleteMovieChoice = $deleteMovieChoice;
     }
 
     public function __invoke(Request $request): JsonResponse
     {
         try {
-            $result = call_user_func_array(
-                $this->deleteFilmChoice,
+            $movieChoice = call_user_func_array(
+                $this->deleteMovieChoice,
                 [
                     $request->get('user_uuid'),
                     $request->get('imdbId'),
@@ -35,6 +35,6 @@ class DeleteFilmChoiceController
             );
         }
 
-        return new JsonResponse($result);
+        return new JsonResponse($movieChoice);
     }
 }

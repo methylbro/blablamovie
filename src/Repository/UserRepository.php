@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use App\Entity\FilmChoice;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +13,6 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findWithFilmChoice()
+    public function findWithMovieChoice()
     {}
 }
