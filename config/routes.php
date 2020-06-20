@@ -7,11 +7,11 @@ return function (RoutingConfigurator $routes) {
 
     $routes->add('user_create', '/user')
         ->controller(Controller\CreateUserController::class)
-        ->methods(['POST', 'GET'])
+        ->methods(['POST'])
     ;
     $routes->add('delete_moviechoice', '/user/{user_uuid}/moviechoice/{imdbId}')
         ->controller(Controller\DeleteMovieChoiceController::class)
-        ->methods(['DEL', 'GET'])
+        ->methods(['DEL'])
     ;
     $routes->add('read_bestfilm', '/bestfilm')
         ->controller(Controller\ReadBestMovieController::class)
@@ -27,7 +27,7 @@ return function (RoutingConfigurator $routes) {
     ;
     $routes->add('save_moviechoice', '/user/{user_uuid}/moviechoice')
         ->controller(Controller\SaveMovieChoiceController::class)
-        ->methods(['PUT', 'GET'])
+        ->methods(['POST'])
     ;
 
 };

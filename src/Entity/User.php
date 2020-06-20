@@ -37,7 +37,7 @@ class User
     public $pseudo = null;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     public $birthday = null;
 
