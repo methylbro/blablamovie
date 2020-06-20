@@ -24,12 +24,45 @@ Merci de mettre à disposition le code sur un git ouvert (github, gitlab...), ai
 Une attention particulière sera porté à la lisibilité du code, aux bonnes pratiques de développement d'une API REST et aux performances des requêtes SQL.
 
 
-Installation
-------------
+Usage
+-----
 
-### Prérequis
+### POST /user
+Créer un utilisateur.
 
-PHP >=7.4
-composer
-symfony
-phpunit
+#### Valeurs attendues
+
+Sous la forme d'une structure au format json :
+
+- email (obligatoire): chaine
+- pseudo (facultatif): chaine
+- birthday (facultatif): chaine de date au format YYYY/MM/DD
+
+#### Valeurs de retour
+
+Sous la forme d'une structure au format json :
+
+- id : chaine
+- email : chaine
+- pseudo : chaine ou null
+- birthday : chaine de date au format YYYY/MM/DD ou null
+- createdAt : structure datetime
+
+
+### POST /user/{user_uuid}/moviechoice
+
+Enregistrer le choix d'un film d'un utilisateur.
+
+#### Valeur attendue
+
+Une chaine contenant l'id imdb (Internet Movie Database) du film choisi.
+
+#### Valeur de retour
+
+
+
+
+### DEL /user/{user_uuid}/moviechoice/{imdbId}
+### GET /bestfilm
+### GET /user/{user_uuid}/moviechoices
+### GET /users/withmoviechoice
